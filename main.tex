@@ -26,7 +26,7 @@
 \usepackage{ifthen}
 
 % Package to set transparent background image
-%\usepackage{tikz}
+\usepackage{tikz}
 
 % Include image package
 \usepackage{graphicx}
@@ -77,6 +77,7 @@
     }
 }
 % Footer with custom caption
+
 \setbeamertemplate{footline}
 {
     \leavevmode
@@ -91,13 +92,14 @@
     \insertframenumber{} / \inserttotalframenumber
     \end{beamercolorbox}}
     \vskip0pt
+    
 }
 
 % Global Background must be put in preamble
-%\usebackgroundtemplate
-%{
-%    \tikz\node[opacity=0.3]{\includegraphics[height=\paperheight, width=\paperwidth]{background.png}};
-%}
+\usebackgroundtemplate
+{
+    \tikz\node{\includegraphics[height=\paperheight, width=\paperwidth]{background.pdf}};
+}
 
 % One line command to print table of contents - two parameters for modes
 \newcommand{\customToC}[2]
@@ -160,8 +162,7 @@ Engineered nanomaterials are (...)
 \end{frame}
 
 % 
-\renewcommand{\subsectiontitle}{Definition}
-\subsection{\subsectiontitle}
+\renewcommand{\subsectiontitle}{What is an ontology?}
 \begin{frame}{\subsectiontitle}
     \begin{itemize}
         \item A means to capture things \citet{source}
@@ -170,8 +171,6 @@ Engineered nanomaterials are (...)
 \end{frame}
 
 % 
-\renewcommand{\subsectiontitle}{Composition}
-\subsection{\subsectiontitle}
 \begin{frame}{\subsectiontitle}
     \begin{itemize}
         \item Classes
@@ -181,8 +180,7 @@ Engineered nanomaterials are (...)
 \end{frame}
 
 % 
-\renewcommand{\subsectiontitle}{Types}
-\subsection{\subsectiontitle}
+
 \begin{frame}{\subsectiontitle}
     \begin{itemize}
         \item \textbf{Foundation ontologies}: they provide the most abstract or general classes, i.e., the top-level classes we see in a hierarchy view of our ontology.
@@ -192,8 +190,6 @@ Engineered nanomaterials are (...)
 \end{frame}
 
 % 
-\renewcommand{\subsectiontitle}{What does an ontology look like?}
-\subsection{\subsectiontitle}
 \begin{frame}{\subsectiontitle}
     \begin{itemize}
         \item \textbf{An ontology is stored in a text file}
@@ -202,6 +198,16 @@ Engineered nanomaterials are (...)
     \end{itemize}
 \end{frame}
 
+% 
+\subsection{\subsectiontitle}
+\begin{frame}{\subsectiontitle}
+    \begin{itemize}
+        \item Foundation ontologies
+        \item OBO ontologies
+        \item Chebi
+        \item GO
+    \end{itemize}
+\end{frame}
 
 % 
 \renewcommand{\subsectiontitle}{What does an ontology look like? (cont)}
@@ -249,32 +255,9 @@ Engineered nanomaterials are (...)
     
 \end{frame}
 
-\renewcommand{\sectiontitle}{And other ontologies?}
-\section{\sectiontitle}
-\customToC{currentsection,hideothersubsections}{}
-
-% 
-\renewcommand{\subsectiontitle}{Foundation ontologies}
-\subsection{\subsectiontitle}
-
-\begin{frame}{\subsectiontitle}
-...  
-\begin{itemize}
-    \item in eNM:
-    \item Implications? Interoperability?
-\end{itemize}
-\end{frame}
-
-% 
-\renewcommand{\subsectiontitle}{The Open Biological and Biomedical Ontologies}
-\subsection{\subsectiontitle}
-
-\begin{frame}{\subsectiontitle}
-...
-\end{frame}
 
 %
-\renewcommand{\sectiontitle}{Challenges and work in progress}
+\renewcommand{\sectiontitle}{Future plans and challenges}
 \section{\sectiontitle}
 \customToC{currentsection,hideothersubsections}{}
 
@@ -289,9 +272,8 @@ Engineered nanomaterials are (...)
 % 
 \renewcommand{\subsectiontitle}{Migrating the ontology development?}
 \subsection{\subsectiontitle}
-ODK for automation, standadisation, interoperability... is it convenient for enm?
 \begin{frame}{\subsectiontitle}
-...
+... ODK for automation, standadisation, interoperability... is it convenient for enm?
 \end{frame}
 
 
