@@ -14,7 +14,7 @@
 
 % Text encoding
 \usepackage[english]{babel}
-
+\usepackage[export]{adjustbox}
 % Justify text (package and function)
 % \apptocmd{command}{code}{success}{failure}
 \usepackage{ragged2e}
@@ -120,6 +120,17 @@
     \end{figure}
 }
 
+% Command to plot right-aligned figure
+% Parameters: #1=image name, #2=caption 
+\newcommand{\includefiguresmall}[2]
+{
+    \begin{figure}[h]
+    \caption{#2}
+    \centering
+    \includegraphics[width=0.3\textwidth]{#1}
+    \end{figure}
+}
+
 % Command to set section name as variable (\renewcommand to update)
 \newcommand{\sectiontitle}{}
 % Command to set subsection name as variable (\renewcommand to update)
@@ -153,31 +164,64 @@
 \renewcommand{\subsectiontitle}{eNanoMapper}
 \subsection{\subsectiontitle}
 \begin{frame}{\subsectiontitle}
-    \emph{\textit{eNanoMapper aims to address data and model interoperability challenges for toxicological data management for ENMs. This ontology is an application ontology targeting the full domain of nanomaterial safety assessment. It re-uses several other ontologies.}}
+    \begin{itemize}
+        \item \textbf{eNanoMapper} is a broader European project which aims to address data and model interoperability challenges for data management for engineered nanomaterial safety. 
+        \item \textbf{The eNanoMapper ontology} is an application ontology and reuses parts of several ontologies to describe the full domain of nanomaterial safety assessment.
+    \end{itemize}
+
     % Include figure with caption
     \includefigure{eNanoMapper_LOGO.png}{The eNanoMapper logo}
-\end{frame}
-\begin{frame}{\subsectiontitle}
-Engineered nanomaterials are (...)
 \end{frame}
 
 % 
 \renewcommand{\subsectiontitle}{What is an ontology?}
+
 \begin{frame}{\subsectiontitle}
-    \begin{itemize}
+    \begin{figure}[ht]
+    
+        \begin{minipage}[b]{0.4\linewidth}
+ 			\begin{itemize}
         \item A means to capture things \citet{source}
-        \item It consists of a set of statements (axioms) each of which is true in the situation it is applied to. \citet{source}
+        \item It consists of a set of statements (axioms) each of which is true in the situation the ontology is applied to. \citet{source}
+        \item DL and semantics... find a nice quote in literature to summarize gently
+        \item Classes, Individuals and Relations
+    		\end{itemize}
+        \end{minipage}
+        \hspace{0.5cm}
+     \begin{minipage}[b]{0.4\linewidth}
+            	\caption{The pizza ontology, visualized as a graph (add source)}
+                \includegraphics[width=\textwidth]{pizza-ontology.png}
+        \end{minipage}
+    \end{figure}
+\end{frame}
+
+
+
+
     \end{itemize}
+
 \end{frame}
 
 % 
+
 \begin{frame}{\subsectiontitle}
-    \begin{itemize}
-        \item Classes
-        \item Individuals
-        \item ...
-    \end{itemize}
+    \begin{figure}[ht]
+        \begin{minipage}[b]{0.35\linewidth}
+            \centering
+             \caption{A class in an ontology text file}
+            \includegraphics[width=\textwidth]{owltext.pdf}
+           
+        \end{minipage}
+        \hspace{0.5cm}
+        \begin{minipage}[b]{0.35\linewidth}
+            \centering
+            \caption{A class in the hierarchy view of its ontology}
+            \includegraphics[width=\textwidth]{classhierarchy.png}
+            
+        \end{minipage}
+    \end{figure}
 \end{frame}
+
 
 % 
 
@@ -189,14 +233,6 @@ Engineered nanomaterials are (...)
     \end{itemize}
 \end{frame}
 
-% 
-\begin{frame}{\subsectiontitle}
-    \begin{itemize}
-        \item \textbf{An ontology is stored in a text file}
-        \item \textbf{An ontology is a }
-        \item ...
-    \end{itemize}
-\end{frame}
 
 % 
 \subsection{\subsectiontitle}
@@ -209,30 +245,11 @@ Engineered nanomaterials are (...)
     \end{itemize}
 \end{frame}
 
-% 
-\renewcommand{\subsectiontitle}{What does an ontology look like? (cont)}
 
-\begin{frame}{\subsectiontitle}
-    \begin{figure}[ht]
-        \begin{minipage}[b]{0.35\linewidth}
-            \centering
-            \includegraphics[width=\textwidth]{owltext.pdf}
-            \caption{A class in an ontology text file}
-            \label{fig:cifar10}
-        \end{minipage}
-        \hspace{0.5cm}
-        \begin{minipage}[b]{0.35\linewidth}
-            \centering
-            \includegraphics[width=\textwidth]{classhierarchy.png}
-            \caption{A class in the hierarchy view of an ontology}
-            \label{fig:cifar100}
-        \end{minipage}
-    \end{figure}
-\end{frame}
 
 
 % Section name and highlighted ToC
-\renewcommand{\sectiontitle}{Current state of the eNanoMapper Ontology}
+\renewcommand{\sectiontitle}{The eNanoMapper Ontology}
 \section{\sectiontitle}
 \customToC{currentsection,hideothersubsections}{}
 
@@ -243,6 +260,15 @@ Engineered nanomaterials are (...)
 
 \begin{frame}{\subsectiontitle}
     Pointers about this...
+    
+\end{frame}
+
+% 
+\renewcommand{\subsectiontitle}{Composition of the eNanoMapper ontology}
+\subsection{\subsectiontitle}
+
+\begin{frame}{\subsectiontitle}
+\includefigure{enm-structure.png}{eNM ontology yadda quote}
     
 \end{frame}
 
@@ -273,7 +299,7 @@ Engineered nanomaterials are (...)
 \renewcommand{\subsectiontitle}{Migrating the ontology development?}
 \subsection{\subsectiontitle}
 \begin{frame}{\subsectiontitle}
-... ODK for automation, standadisation, interoperability... is it convenient for enm?
+... ODK for automation, standardisation, interoperability... is it convenient for enm?
 \end{frame}
 
 
