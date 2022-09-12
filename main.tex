@@ -83,7 +83,7 @@
     \leavevmode
     \hbox{
     \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.6ex,dp=1ex,center]{palette quaternary}
-    \usebeamerfont{author in head/foot}\insertshortauthor\hspace*{1ex}
+    \usebeamerc{}\insertshortauthor\hspace*{1ex}
     \end{beamercolorbox}
     \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.6ex,dp=1ex,center]{palette quaternary}
     \usebeamerfont{institute in head/foot}\insertshortinstitute
@@ -120,16 +120,39 @@
     \end{figure}
 }
 
-% Command to plot right-aligned figure
+% Command to plot larger figure
 % Parameters: #1=image name, #2=caption 
-\newcommand{\includefiguresmall}[2]
+\newcommand{\includefigurelarger}[2]
 {
     \begin{figure}[h]
     \caption{#2}
     \centering
-    \includegraphics[width=0.3\textwidth]{#1}
+    \includegraphics[width=0.85\textwidth]{#1}
     \end{figure}
 }
+
+% Command to plot smaller figure
+% Parameters: #1=image name, #2=caption 
+\newcommand{\includefiguresmaller}[2]
+{
+    \begin{figure}[h]
+    \caption{#2}
+    \centering
+    \includegraphics[width=0.25\textwidth]{#1}
+    \end{figure}
+}
+
+% Command to plot medium sized figure
+% Parameters: #1=image name, #2=caption 
+\newcommand{\includefiguremedium}[2]
+{
+    \begin{figure}[h]
+    \caption{#2}
+    \centering
+    \includegraphics[width=0.40\textwidth]{#1}
+    \end{figure}
+}
+
 
 % Command to set section name as variable (\renewcommand to update)
 \newcommand{\sectiontitle}{}
@@ -169,59 +192,76 @@
         \item \textbf{The eNanoMapper ontology} is an application ontology and reuses parts of several ontologies to describe the full domain of nanomaterial safety assessment.
     \end{itemize}
 
-    % Include figure with caption
-    \includefigure{eNanoMapper_LOGO.png}{The eNanoMapper logo}
+\includefigure{eNanoMapper_LOGO.png}{The eNanoMapper logo}
 \end{frame}
 
 % 
 \renewcommand{\subsectiontitle}{What is an ontology?}
 
 \begin{frame}{\subsectiontitle}
-    \begin{figure}[ht]
-    
-        \begin{minipage}[b]{0.4\linewidth}
  			\begin{itemize}
-        \item A means to capture things \citet{source}
-        \item It consists of a set of statements (axioms) each of which is true in the situation the ontology is applied to. \citet{source}
-        \item DL and semantics... find a nice quote in literature to summarize gently
-        \item Classes, Individuals and Relations
+\item A formal description of a domain (a means to capture knowledge about things) \citet{source}  
+\item It consists of three syntactical categories: \textbf{Entities}, \textbf{Expressions} and \textbf{Axioms}, which can be given annotations for further description.
+\item All entities (classes, object properties, named individuals...) are uniquely identified by a sequence of characters called IRI.
     		\end{itemize}
-        \end{minipage}
-        \hspace{0.5cm}
-     \begin{minipage}[b]{0.4\linewidth}
-            	\caption{The pizza ontology, visualized as a graph (add source)}
-                \includegraphics[width=\textwidth]{pizza-ontology.png}
-        \end{minipage}
-    \end{figure}
-\end{frame}
 
-
-
-
-    \end{itemize}
+                \includefiguresmaller{classhierarchy.png}{A class (highlighted in blue) in the hierarchy view of the ontology it is contained in.}
 
 \end{frame}
+
+
+
 
 % 
 
 \begin{frame}{\subsectiontitle}
-    \begin{figure}[ht]
-        \begin{minipage}[b]{0.35\linewidth}
-            \centering
-             \caption{A class in an ontology text file}
-            \includegraphics[width=\textwidth]{owltext.pdf}
-           
+ \raggedleft
+ \includefiguremedium{class.pdf}{A class in an ontology text file (the ontology document). IRIs in blue.}
+\end{frame}
+
+%
+
+\begin{frame}{\subsectiontitle}
+    \begin{figure}
+        \begin{minipage}[b]{0.55\linewidth}
+ 			\begin{itemize}
+\item Most ontologies use the W3C standard language for ontologies, Web Ontology Language \textbf{OWL}.
+\item OWL ontologies are mainly stored in \texttt{.owl} files, which are a sort of \textbf{RDF} document.
+\item \textbf{RDF} (Resource Description Framework) is a standard for data exchange. It defines \textbf{triples} of \textbf{(subject, predicate, object)}.
+\item These triples form labeled graphs where the edge (predicate) represents the link between two resources (subject and object)
+    		\end{itemize}
         \end{minipage}
-        \hspace{0.5cm}
-        \begin{minipage}[b]{0.35\linewidth}
+    \hfill
+     \begin{minipage}[b]{0.4\linewidth}
             \centering
-            \caption{A class in the hierarchy view of its ontology}
-            \includegraphics[width=\textwidth]{classhierarchy.png}
-            
+            \includefigurelarger{pizzaontology.png}{The pizza ontology, visualized as a graph (add source)}
         \end{minipage}
     \end{figure}
 \end{frame}
 
+
+% 
+\subsection{\subsectiontitle}
+\begin{frame}{\subsectiontitle}
+
+     
+\begin{figure}
+    
+    \centering
+	\includefigurelarger{rdf-graph-triple.pdf}{A graph with two nodes (Subject and Object) and a triple connecting them (Predicate)}
+    \end{figure}
+\end{frame}
+
+% 
+\subsection{\subsectiontitle}
+\begin{frame}{\subsectiontitle}
+
+     
+\begin{figure}
+    \centering
+	\includefigurelarger{rdf-owl.pdf}{The triple in the previous figure as included in the \texttt{.owl} document file of the ontology it is contained in.}
+    \end{figure}
+\end{frame}
 
 % 
 
@@ -232,21 +272,6 @@
         \item \textbf{Domain ontologies}
     \end{itemize}
 \end{frame}
-
-
-% 
-\subsection{\subsectiontitle}
-\begin{frame}{\subsectiontitle}
-    \begin{itemize}
-        \item Foundation ontologies
-        \item OBO ontologies
-        \item Chebi
-        \item GO
-    \end{itemize}
-\end{frame}
-
-
-
 
 % Section name and highlighted ToC
 \renewcommand{\sectiontitle}{The eNanoMapper Ontology}
@@ -292,7 +317,10 @@
 \subsection{\subsectiontitle}
 
 \begin{frame}{\subsectiontitle}
-...
+\begin{itemize}
+    \item OWL is not the best at modularity, but the eNM ontology heavily relies on importing modules. This leads to complications in class hierarchies, duplicate imports, etc.
+    \item This peculiarity
+\end{itemize}
 \end{frame}
 
 % 
