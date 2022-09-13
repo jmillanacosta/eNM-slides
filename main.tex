@@ -15,6 +15,7 @@
 % Text encoding
 \usepackage[english]{babel}
 \usepackage[export]{adjustbox}
+\usepackage{tikz}
 % Justify text (package and function)
 % \apptocmd{command}{code}{success}{failure}
 \usepackage{ragged2e}
@@ -196,13 +197,24 @@
 \end{frame}
 
 % 
-\renewcommand{\subsectiontitle}{What is an ontology?}
-
+\renewcommand{\subsectiontitle}{Engineered nanomaterials}
+\subsection{\subsectiontitle}
 \begin{frame}{\subsectiontitle}
  			\begin{itemize}
-\item A formal description of a domain (a means to capture knowledge about things) \citet{source}  
+\item a
+\item b
+\item c
+    		\end{itemize}
+
+\end{frame}
+
+% 
+\renewcommand{\subsectiontitle}{Ontologies}
+\subsection{\subsectiontitle}
+\begin{frame}{\subsectiontitle}
+ 			\begin{itemize}
+\item A formal representation of a set of concepts within a knowledge domain which can be used to a) define such domain; and b) reason about its properties \citet{source}  
 \item It consists of three syntactical categories: \textbf{Entities}, \textbf{Expressions} and \textbf{Axioms}, which can be given annotations for further description.
-\item All entities (classes, object properties, named individuals...) are uniquely identified by a sequence of characters called IRI.
     		\end{itemize}
 
                 \includefiguresmaller{classhierarchy.png}{A class (highlighted in blue) in the hierarchy view of the ontology it is contained in.}
@@ -214,9 +226,14 @@
 
 % 
 
+
 \begin{frame}{\subsectiontitle}
- \raggedleft
- \includefiguremedium{class.pdf}{A class in an ontology text file (the ontology document). IRIs in blue.}
+\begin{itemize}
+\item All entities (classes, object properties, named individuals...) are uniquely identified by a sequence of characters called IRI.
+
+\end{itemize}
+
+ \includefigurelarger{class.pdf}{A class in an ontology text file (the ontology document). IRIs in blue.}
 \end{frame}
 
 %
@@ -241,7 +258,6 @@
 
 
 % 
-\subsection{\subsectiontitle}
 \begin{frame}{\subsectiontitle}
 
      
@@ -253,13 +269,12 @@
 \end{frame}
 
 % 
-\subsection{\subsectiontitle}
 \begin{frame}{\subsectiontitle}
 
      
 \begin{figure}
     \centering
-	\includefigurelarger{rdf-owl.pdf}{The triple in the previous figure as included in the \texttt{.owl} document file of the ontology it is contained in.}
+	\includefigurelarger{rdf-owl.pdf}{The triple in the previous figure as expressed in the \texttt{.owl} document file of the ontology it is contained in.}
     \end{figure}
 \end{frame}
 
@@ -294,7 +309,7 @@
 
 \begin{frame}{\subsectiontitle}
 \includefigure{enm-structure.png}{eNM ontology yadda quote}
-    
+    https://faircookbook.elixir-europe.org/content/recipes/interoperability/ontology-robot-recipe.html make a similar figure!
 \end{frame}
 
 % 
@@ -302,7 +317,7 @@
 \subsection{\subsectiontitle}
 
 \begin{frame}{\subsectiontitle}
-    Pointers about this...
+    Pointers about this...how do we add terms, etc
     
 \end{frame}
 
@@ -327,7 +342,19 @@
 \renewcommand{\subsectiontitle}{Migrating the ontology development?}
 \subsection{\subsectiontitle}
 \begin{frame}{\subsectiontitle}
-... ODK for automation, standardisation, interoperability... is it convenient for enm?
+\centering
+\begin{tikzpicture}[node distance={40mm}, thick, main/.style = {draw, square}] 
+\node[main] (1) {eNanoMapper Ontology}; 
+\node[main] (2) [above right of=1] {Internal terms}; 
+\node[main] (3) [below right of=1] {External terms}; 
+\node[main] (4) [right of=1] {Annotations}; 
+\draw[->] (2) -- node[midway, sloped, above left, pos=0.1]{\textit{Manual curation}} (1); 
+\draw[->] (3) -- node[midway, sloped, above left, pos=0.1]{\textit{ROBOT}} (1); 
+
+\draw[->] (4) -- (1); 
+
+
+\end{tikzpicture} 
 \end{frame}
 
 
