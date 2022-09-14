@@ -102,6 +102,10 @@
     \tikz\node{\includegraphics[height=\paperheight, width=\paperwidth]{background.pdf}};
 }
 
+% Subitem
+\newcommand{\subitem}[1]{
+    {\setlength\itemindent{15pt} \item[-] #1}
+}
 % One line command to print table of contents - two parameters for modes
 \newcommand{\customToC}[2]
 {
@@ -129,6 +133,17 @@
     \caption{#2}
     \centering
     \includegraphics[width=0.85\textwidth]{#1}
+    \end{figure}
+}
+
+% Command to plot medium-large figure
+% Parameters: #1=image name, #2=caption 
+\newcommand{\includefiguremediumlarger}[2]
+{
+    \begin{figure}[h]
+    \caption{#2}
+    \centering
+    \includegraphics[width=0.6\textwidth]{#1}
     \end{figure}
 }
 
@@ -163,7 +178,7 @@
 
 % Title page
 \title{The eNanoMapper Ontology}
-\subtitle{Harnessing ontologies to enable data integration for nanomaterial risk assessment}
+\subtitle{An application ontology to enable data integration for nanomaterial risk assessment}
 \author{Javier Millán Acosta}
 \institute{BiGCaT - Maastricht University}
 % Date
@@ -197,13 +212,16 @@
 \end{frame}
 
 % 
-\renewcommand{\subsectiontitle}{Engineered nanomaterials}
+\renewcommand{\subsectiontitle}{Engineered nanomaterials and safety}
 \subsection{\subsectiontitle}
 \begin{frame}{\subsectiontitle}
  			\begin{itemize}
-\item a
-\item b
-\item c
+\item Engineered nanomaterials (eNMs) are broadly defined as compounds that exist on a scale of ~1–100 nm.in at least one of their dimensions. https://www.sciencedirect.com/topics/engineering/engineered-nanoparticles
+\item Their safety assessment must cover the identification of:
+\subitem{Physicochemical properties}
+\subitem{Biological properties} https://www.beilstein-journals.org/bjnano/content/pdf/2190-4286-6-165.pdf
+
+\
     		\end{itemize}
 
 \end{frame}
@@ -217,7 +235,7 @@
 \item It consists of three syntactical categories: \textbf{Entities}, \textbf{Expressions} and \textbf{Axioms}, which can be given annotations for further description.
     		\end{itemize}
 
-                \includefiguresmaller{classhierarchy.png}{A class (highlighted in blue) in the hierarchy view of the ontology it is contained in.}
+                \includefiguresmaller{classhierarchy.png}{A class (highlighted in blue) in a partial hierarchy view of eNM.}
 
 \end{frame}
 
@@ -233,7 +251,7 @@
 
 \end{itemize}
 
- \includefigurelarger{class.pdf}{A class in an ontology text file (the ontology document). IRIs in blue.}
+ \includefigurelarger{class.pdf}{An \textt{owl:Class} in an ontology text file (the ontology document). IRIs in blue.}
 \end{frame}
 
 %
@@ -294,21 +312,13 @@
 \customToC{currentsection,hideothersubsections}{}
 
 
+
 % 
-\renewcommand{\subsectiontitle}{Development and QC}
+\renewcommand{\subsectiontitle}{Design of the eNanoMapper ontology}
 \subsection{\subsectiontitle}
 
 \begin{frame}{\subsectiontitle}
-    Pointers about this...
-    
-\end{frame}
-
-% 
-\renewcommand{\subsectiontitle}{Composition of the eNanoMapper ontology}
-\subsection{\subsectiontitle}
-
-\begin{frame}{\subsectiontitle}
-\includefigure{enm-structure.png}{eNM ontology yadda quote}
+\includefigure{enm-structure.png}{AN overview of the upper levels, imports and manually annotated content going into the eNanoMapper ontology}
     https://faircookbook.elixir-europe.org/content/recipes/interoperability/ontology-robot-recipe.html make a similar figure!
 \end{frame}
 
@@ -342,22 +352,61 @@
 \renewcommand{\subsectiontitle}{Migrating the ontology development?}
 \subsection{\subsectiontitle}
 \begin{frame}{\subsectiontitle}
+\begin{itemize}
+    \item Current setup: Jenkins for CI
+    \item Alternatives:
+        \subitem{Literal migration from Jenkins to GitHub actions (ref figure)}
+        \subitem{The Ontology Development Kit (ref figure)}
+\end{itemize}
+\end{frame}
+
+% 
+
+\begin{frame}{\subsectiontitle}
 \centering
-\begin{tikzpicture}[node distance={40mm}, thick, main/.style = {draw, square}] 
-\node[main] (1) {eNanoMapper Ontology}; 
-\node[main] (2) [above right of=1] {Internal terms}; 
-\node[main] (3) [below right of=1] {External terms}; 
-\node[main] (4) [right of=1] {Annotations}; 
-\draw[->] (2) -- node[midway, sloped, above left, pos=0.1]{\textit{Manual curation}} (1); 
-\draw[->] (3) -- node[midway, sloped, above left, pos=0.1]{\textit{ROBOT}} (1); 
+\includefiguremediumlarger{jenkins.pdf}{The current Jenkins setup for eNanoMapper ontology CI}
+\end{frame}
 
-\draw[->] (4) -- (1); 
+% 
 
-
-\end{tikzpicture} 
+\begin{frame}{\subsectiontitle}
+\centering
+\includefiguremediumlarger{ghactionsrun.pdf}{A test run for the GitHub actions-based setup for eNanoMapper ontology CI}
 \end{frame}
 
 
+% 
+
+\begin{frame}{\subsectiontitle}
+\centering
+    The current approach uses in-house software (\textit{Slimmer}) to slim imports.
+    \begin{tikzpicture}[node distance={37mm}, thick, main/.style = {draw, square}] 
+    \node[main] (1) {eNanoMapper Ontology}; 
+    \node[main] (2) [above right of=1] {Internal (manually added) terms}; 
+    \node[main] (3) [below right of=1] {External terms}; 
+    \node[main] (4) [right of=1] {Annotations};
+    \node[main] (5) [right of=4] {External ontologies}; 
+    \draw[->] (2) -- node[midway, sloped, above left, pos=0.1]{\textit{owl:Imports}} (1); 
+    \draw[->] (3) -- node[midway, sloped, above left, pos=0.1]{\textit{owl:Imports}} (1); 
+    \draw[->] (4) -- (1); 
+    \draw[->] (5) -- node[midway, sloped, above left, pos=0.4]{\textit{Slimmer}} (3); 
+    \draw[->] (5) -- (4); 
+    \draw[->] (2) -- (4);
+\end{tikzpicture} 
+\end{frame}
+
+% 
+\begin{frame}{\subsectiontitle}
+\centering
+    \textit{ROBOT}, an OBO-centered software, could replace \textit{Slimmer}
+
+
+\end{frame}
+% 
+\begin{frame}{\subsectiontitle}
+\centering
+ODK diagram figure?
+\end{frame}
 
 % Import bibliography from file sample.bib
 \begin{frame}[t, allowframebreaks]
