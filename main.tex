@@ -12,7 +12,9 @@
 
 \documentclass[english, xcolor=dvipsnames, aspectratio=169]{beamer}
 
-% Text encoding
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{adjustbox}
 \usepackage[english]{babel}
 \usepackage[export]{adjustbox}
 \usepackage{tikz}
@@ -37,9 +39,8 @@
 \setbeamertemplate{caption}[numbered]
 
 % Bibliography packages
-\usepackage[sort, round]{natbib}
-\bibliographystyle{plainnat}
-
+\usepackage[numbers,sorting=none]{natbib}
+\bibliographystyle{unsrtnat}
 % Define colors variables
 \definecolor{darkblue}{rgb}{0.12, 0.139, 0.164} % primary color
 \definecolor{grey}{rgb}{0.3686, 0.5255, 0.6235} % secondary color
@@ -204,8 +205,8 @@
 \subsection{\subsectiontitle}
 \begin{frame}{\subsectiontitle}
     \begin{itemize}
-        \item \textbf{eNanoMapper} is a broader European project which aims to address data and model interoperability challenges for data management for engineered nanomaterial safety. 
-        \item \textbf{The eNanoMapper ontology} is an application ontology and reuses parts of several ontologies to describe the full domain of nanomaterial safety assessment.
+        \item \textbf{eNanoMapper} is a broader project which aims to address data and model interoperability challenges for engineered nanomaterial safety. \cite{jeliazkova_enanomapper_2015}
+        \item \textbf{The eNanoMapper ontology} is an application ontology and reuses parts of several ontologies to describe the full domain of nanomaterial safety assessment. \cite{hastings_enanomapper_2015}
     \end{itemize}
 
 \includefigure{eNanoMapper_LOGO.png}{The eNanoMapper logo}
@@ -216,12 +217,11 @@
 \subsection{\subsectiontitle}
 \begin{frame}{\subsectiontitle}
  			\begin{itemize}
-\item Engineered nanomaterials (eNMs) are broadly defined as compounds that exist on a scale of ~1–100 nm.in at least one of their dimensions. https://www.sciencedirect.com/topics/engineering/engineered-nanoparticles
+\item Engineered nanomaterials (eNMs) are broadly defined as compounds that exist on a scale of ~1–100 nm. in at least one of their dimensions. \cite{hastings_enanomapper_2015}
 \item Their safety assessment must cover the identification of:
 \subitem{Physicochemical properties}
-\subitem{Biological properties} https://www.beilstein-journals.org/bjnano/content/pdf/2190-4286-6-165.pdf
-
-\
+\subitem{Biological properties and activity} \cite{jeliazkova_enanomapper_2015}
+\subitem{Diffusion behaviour into the natural environment} \cite{hastings_enanomapper_2015}
     		\end{itemize}
 
 \end{frame}
@@ -231,11 +231,11 @@
 \subsection{\subsectiontitle}
 \begin{frame}{\subsectiontitle}
  			\begin{itemize}
-\item A formal representation of a set of concepts within a knowledge domain which can be used to a) define such domain; and b) reason about its properties \citet{source}  
-\item It consists of three syntactical categories: \textbf{Entities}, \textbf{Expressions} and \textbf{Axioms}, which can be given annotations for further description.
+\item A formal representation of a set of concepts within a knowledge domain which can be used to a) define such domain; and b) reason about its properties \cite{krotzsch_description_2013}  
+\item It consists of three syntactical categories: \textbf{Entities}, \textbf{Expressions} and \textbf{Axioms}, which can be given annotations for further description. \cite{noauthor_owl_nodate}
     		\end{itemize}
 
-                \includefiguresmaller{classhierarchy.png}{A class (highlighted in blue) in a partial hierarchy view of eNM.}
+                \includefiguremedium{ontologies4}{An ontology is not just a glossary or vocabulary. Axioms constrain, disambiguate and overall provide semantic richness.}
 
 \end{frame}
 
@@ -262,14 +262,14 @@
  			\begin{itemize}
 \item Most ontologies use the W3C standard language for ontologies, Web Ontology Language \textbf{OWL}.
 \item OWL ontologies are mainly stored in \texttt{.owl} files, which are a sort of \textbf{RDF} document.
-\item \textbf{RDF} (Resource Description Framework) is a standard for data exchange. It defines \textbf{triples} of \textbf{(subject, predicate, object)}.
+\item \textbf{RDF} (Resource Description Framework) is a standard for data exchange. It defines \textbf{triples} of \textbf{(subject, predicate, object)}. \cite{noauthor_rdf_nodate}
 \item These triples form labeled graphs where the edge (predicate) represents the link between two resources (subject and object)
     		\end{itemize}
         \end{minipage}
     \hfill
      \begin{minipage}[b]{0.4\linewidth}
             \centering
-            \includefigurelarger{pizzaontology.png}{The pizza ontology, visualized as a graph (add source)}
+            \includefigurelarger{pizzaontology.png}{The pizza ontology, visualized as a graph \cite{drummond_pizza_nodate}}
         \end{minipage}
     \end{figure}
 \end{frame}
@@ -282,7 +282,7 @@
 \begin{figure}
     
     \centering
-	\includefigurelarger{rdf-graph-triple.pdf}{A graph with two nodes (Subject and Object) and a triple connecting them (Predicate)}
+	\includefigurelarger{rdf-graph-triple.pdf}{A graph with two nodes (Subject and Object) and a triple connecting them (Predicate): the class with class description "electric potential" is a subclass of disposition.}
     \end{figure}
 \end{frame}
 
@@ -300,14 +300,13 @@
 
 \begin{frame}{\subsectiontitle}
     \begin{itemize}
-        \item \textbf{Foundation ontologies}: they provide the most abstract or general classes, i.e., the top-level classes we see in a hierarchy view of our ontology.
-        \item \textbf{Application ontologies}:
-        \item \textbf{Domain ontologies}
+        \item \textbf{Foundation/Upper/Top-level ontologies}
+        \item \textbf{Application and domain ontologies} 
     \end{itemize}
 \end{frame}
 
 % Section name and highlighted ToC
-\renewcommand{\sectiontitle}{The eNanoMapper Ontology}
+\renewcommand{\sectiontitle}{eNanoMapper Ontology}
 \section{\sectiontitle}
 \customToC{currentsection,hideothersubsections}{}
 
@@ -318,60 +317,8 @@
 \subsection{\subsectiontitle}
 
 \begin{frame}{\subsectiontitle}
-\includefigure{enm-structure.png}{AN overview of the upper levels, imports and manually annotated content going into the eNanoMapper ontology}
-    https://faircookbook.elixir-europe.org/content/recipes/interoperability/ontology-robot-recipe.html make a similar figure!
-\end{frame}
+\includefigure{enm-structure.png}{An overview of the upper levels, imports and manually annotated content going into the eNanoMapper ontology \cite{hastings_enanomapper_2015}}
 
-% 
-\renewcommand{\subsectiontitle}{Uses of the eNM ontology}
-\subsection{\subsectiontitle}
-
-\begin{frame}{\subsectiontitle}
-    Pointers about this...how do we add terms, etc
-    
-\end{frame}
-
-
-%
-\renewcommand{\sectiontitle}{Future plans and challenges}
-\section{\sectiontitle}
-\customToC{currentsection,hideothersubsections}{}
-
-% 
-\renewcommand{\subsectiontitle}{What is still needed}
-\subsection{\subsectiontitle}
-
-\begin{frame}{\subsectiontitle}
-\begin{itemize}
-    \item OWL is not the best at modularity, but the eNM ontology heavily relies on importing modules. This leads to complications in class hierarchies, duplicate imports, etc.
-    \item This peculiarity
-\end{itemize}
-\end{frame}
-
-% 
-\renewcommand{\subsectiontitle}{Migrating the ontology development?}
-\subsection{\subsectiontitle}
-\begin{frame}{\subsectiontitle}
-\begin{itemize}
-    \item Current setup: Jenkins for CI
-    \item Alternatives:
-        \subitem{Literal migration from Jenkins to GitHub actions (ref figure)}
-        \subitem{The Ontology Development Kit (ref figure)}
-\end{itemize}
-\end{frame}
-
-% 
-
-\begin{frame}{\subsectiontitle}
-\centering
-\includefiguremediumlarger{jenkins.pdf}{The current Jenkins setup for eNanoMapper ontology CI}
-\end{frame}
-
-% 
-
-\begin{frame}{\subsectiontitle}
-\centering
-\includefiguremediumlarger{ghactionsrun.pdf}{A test run for the GitHub actions-based setup for eNanoMapper ontology CI}
 \end{frame}
 
 
@@ -390,28 +337,116 @@
     \draw[->] (3) -- node[midway, sloped, above left, pos=0.1]{\textit{owl:Imports}} (1); 
     \draw[->] (4) -- (1); 
     \draw[->] (5) -- node[midway, sloped, above left, pos=0.4]{\textit{Slimmer}} (3); 
-    \draw[->] (5) -- (4); 
+    \draw[->] (5) -- node[midway, above left, pos=0]{\textit{ROBOT}} (4); 
+    \draw[->] (2) -- (4);
+\end{tikzpicture} 
+\end{frame}
+
+% 
+
+\begin{frame}{\subsectiontitle}
+\centering
+\includefiguremediumlarger{jenkins.pdf}{The current Jenkins setup for eNanoMapper ontology CI/CD}
+\end{frame}
+
+
+
+%
+\renewcommand{\sectiontitle}{Migrating the eNM ontology CI/CD}
+\section{\sectiontitle}
+\customToC{currentsection,hideothersubsections}{}
+
+
+
+
+% 
+\renewcommand{\subsectiontitle}{Migrating the ontology development}
+\subsection{\subsectiontitle}
+\begin{frame}{\subsectiontitle}
+\begin{itemize}
+    \item Current setup: Jenkins for CI in own server (to be dropped soon)
+    \item Alternatives:
+        \subitem{Literal migration from Jenkins to GitHub actions (ref figure)}
+        \subitem{Migration to the Ontology Development Kit-ROBOT - rethinking the whole process(ref figure)}
+\end{itemize}
+\end{frame}
+
+
+
+% 
+\renewcommand{\subsectiontitle}{A. Migrating current setup to GitHub actions}
+\subsection{\subsectiontitle}
+\begin{frame}{\subsectiontitle}
+\centering
+\includefiguremediumlarger{ghactionsrun.pdf}{A test run for the GitHub actions-based setup for eNanoMapper ontology CI}
+\end{frame}
+
+
+
+
+
+% 
+\renewcommand{\subsectiontitle}{B. Ontology Development Kit}
+\subsection{\subsectiontitle}
+\begin{frame}{\subsectiontitle}
+\centering
+    The ODK approach relies on ROBOT to handle ontologies and serialization of several steps through standardized Makefiles. \cite{matentzoglu_ontology_2021}
+    \begin{tikzpicture}[node distance={37mm}, thick, main/.style = {draw, square}] 
+    \node[main] (1) {eNanoMapper Ontology}; 
+    \node[main] (2) [above right of=1] {Internal (manually added) terms}; 
+    \node[main] (3) [below right of=1] {External terms}; 
+    \node[main] (4) [right of=1] {Annotations};
+    \node[main] (5) [right of=4] {External ontologies}; 
+    \draw[->] (2) -- node[midway, sloped, above left, pos=0.1]{\textit{owl:Imports}} (1); 
+    \draw[->] (3) -- node[midway, sloped, above left, pos=0.1]{\textit{owl:Imports}} (1); 
+    \draw[->] (4) -- (1); 
+    \draw[->] (5) -- node[midway, sloped, above left, pos=0.4]{\textit{ROBOT}} (3); 
+    \draw[->] (5) -- node[midway, above left, pos=0]{\textit{ROBOT}} (4); 
     \draw[->] (2) -- (4);
 \end{tikzpicture} 
 \end{frame}
 
 % 
 \begin{frame}{\subsectiontitle}
-\centering
-    \textit{ROBOT}, an OBO-centered software, could replace \textit{Slimmer}
+\begin{itemize}
+    \item  A toolkit developed for the development of biomedical ontologies following the software development approach (a method preceded by the eNanoMapper/jenkins/Slimmer setup)
+    \item It is delivered in a docker image and uses ROBOT (a wrapper for the OWL API) and a series of scripts to standardize and automate steps like preparing ontology releases, continuous quality control checking, and dependency management. \cite{odk_matentzoglu}
+\end{itemize}
 
-
+    \includefiguremedium{odk-logo_black-banner.png}{The ODK logo}
 \end{frame}
-% 
+
 \begin{frame}{\subsectiontitle}
-\centering
-ODK diagram figure?
+The challenge: replicating the same class hierarchies after substituting Slimmer with ROBOT.
+\end{frame}
+
+% 
+\renewcommand{\subsectiontitle}{Comparison}
+\subsection{\subsectiontitle}
+\begin{frame}{\subsectiontitle}
+\begin{table}[ht]
+\caption{Comparison of the two alternatives for eNanoMapper CI/CD}
+\label{tab:Comparing-approaches}
+  \begin{adjustbox}{width=\textwidth}
+
+
+\begin{tabular}{lll}
+                                                                                  & \textbf{GitHub actions}                                            & \textbf{Ontology Development Kit}             \\
+\textbf{Uses tools}                                                               & GH actions, slimmer, maybe ROBOT for annotations, in-house scripts & ROBOT and ODK scripts                         \\
+\textbf{Keeps current class hierarchy}                                            & Yes                                                                & Perhaps, but will be a challenge              \\
+\textbf{Sticks to OBO recommendations} & Yes, after minimal adaptations if Slimmer is kept                                    & Yes                                           \\
+\textbf{Hosted on}                                                                & GitHub                                                             & GitHub                                        \\
+\textbf{Time to develop}                                                          & Ready at any point                                                 & Not optimal for migrating existing ontologies \cite{matentzoglu_ontology_2021}
+\end{tabular}
+  \end{adjustbox}
+\end{table}
 \end{frame}
 
 % Import bibliography from file sample.bib
 \begin{frame}[t, allowframebreaks]
 \frametitle{References}
-\bibliography{sample}
+
+\bibliography{references}
 \end{frame}
 
 \end{document}
