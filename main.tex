@@ -205,8 +205,8 @@
 \subsection{\subsectiontitle}
 \begin{frame}{\subsectiontitle}
     \begin{itemize}
-        \item \textbf{eNanoMapper} is a broader project which aims to address data and model interoperability challenges for engineered nanomaterial safety. \cite{jeliazkova_enanomapper_2015}
-        \item \textbf{The eNanoMapper ontology} is an application ontology and reuses parts of several ontologies to describe the full domain of nanomaterial safety assessment. \cite{hastings_enanomapper_2015}
+        \item \textbf{eNanoMapper} is a broader project which aims to address data and model interoperability challenges for engineered nanomaterial safety. \cite{jeliazkova_enanomapper_2015} 
+        \item \textbf{The eNanoMapper ontology} is an application ontology and reuses parts of several ontologies to describe the full domain of nanomaterial safety assessment. \cite{hastings_enanomapper_2015}. It was continued by NanoCommons and NanoSolveIT.
     \end{itemize}
 
 \includefigure{eNanoMapper_LOGO.png}{The eNanoMapper logo}
@@ -231,11 +231,10 @@
 \subsection{\subsectiontitle}
 \begin{frame}{\subsectiontitle}
  			\begin{itemize}
-\item A formal representation of a set of concepts within a knowledge domain which can be used to a) define such domain; and b) reason about its properties \cite{krotzsch_description_2013}  
+\item A formal representation of a set of concepts and the rules constraining how they become structured within a knowledge domain.  \cite{krotzsch_description_2013}  
+\item They can be used to provide metadata (a computer-readable set of information that describes other data), or to reason over a domain.
 \item It consists of three syntactical categories: \textbf{Entities}, \textbf{Expressions} and \textbf{Axioms}, which can be given annotations for further description. \cite{noauthor_owl_nodate}
     		\end{itemize}
-
-                \includefiguremedium{ontologies4}{An ontology is not just a glossary or vocabulary. Axioms constrain, disambiguate and overall provide semantic richness.}
 
 \end{frame}
 
@@ -247,7 +246,7 @@
 
 \begin{frame}{\subsectiontitle}
 \begin{itemize}
-\item All entities (classes, object properties, named individuals...) are uniquely identified by a sequence of characters called IRI.
+\item All entities (classes, object properties, named individuals...) are uniquely identified by a sequence of characters called IRI (International Resource Identifier, an extension of URI).
 
 \end{itemize}
 
@@ -276,6 +275,17 @@
 
 
 % 
+\renewcommand{\subsectiontitle}{Ontologies - example of a class}
+\subsection{\subsectiontitle}
+\begin{frame}{\subsectiontitle}
+\begin{figure}
+    
+    \centering
+	\includefiguremediumlarger{class-hierarchy.png}{A view of the eNanoMapper ontology class hierarchy, showing the class "electric potential"}
+    \end{figure}
+\end{frame}
+
+% 
 \begin{frame}{\subsectiontitle}
 
      
@@ -285,6 +295,7 @@
 	\includefigurelarger{rdf-graph-triple.pdf}{A graph with two nodes (Subject and Object) and a triple connecting them (Predicate): the class with class description "electric potential" is a subclass of disposition.}
     \end{figure}
 \end{frame}
+
 
 % 
 \begin{frame}{\subsectiontitle}
@@ -321,12 +332,17 @@
 
 \end{frame}
 
+% 
+\begin{frame}{\subsectiontitle}
+\includefigure{enm-imports.png}{Distribution of the number of classes imported from each ontology into eNM \cite{laurent_winckers_2020_4032809}}
+
+\end{frame}
 
 % 
 
 \begin{frame}{\subsectiontitle}
 \centering
-    The current approach uses in-house software (\textit{Slimmer}) to slim imports.
+    The current approach uses in-house software (\textit{Slimmer}) to slim imports, and ROBOT to extract annotations.
     \begin{tikzpicture}[node distance={37mm}, thick, main/.style = {draw, square}] 
     \node[main] (1) {eNanoMapper Ontology}; 
     \node[main] (2) [above right of=1] {Internal (manually added) terms}; 
@@ -341,6 +357,16 @@
     \draw[->] (2) -- (4);
 \end{tikzpicture} 
 \end{frame}
+
+% 
+
+\begin{frame}{\subsectiontitle}
+\begin{itemize}
+    \item \textbf{SLIMMER} Uses the OWLAPI to create slims of the ontologies to be imported, and determine the class hierarchy of the imports. \cite{hastings_enanomapper_2015}
+    \item \textbf{ROBOT} is a wrapper for the OWL API used by developers in the Open Biomedical Ontologies (among others) for development and quality control. \cite{jackson_robot_2019}
+\end{itemize}
+\end{frame}
+
 
 % 
 
@@ -366,8 +392,8 @@
 \begin{itemize}
     \item Current setup: Jenkins for CI in own server (to be dropped soon)
     \item Alternatives:
-        \subitem{Literal migration from Jenkins to GitHub actions (ref figure)}
-        \subitem{Migration to the Ontology Development Kit-ROBOT - rethinking the whole process(ref figure)}
+        \subitem{Literal migration from Jenkins to GitHub actions}
+        \subitem{Migration to the Ontology Development Kit-ROBOT - rethinking the whole process}
 \end{itemize}
 \end{frame}
 
@@ -381,9 +407,19 @@
 \includefiguremediumlarger{ghactionsrun.pdf}{A test run for the GitHub actions-based setup for eNanoMapper ontology CI}
 \end{frame}
 
+% 
+\begin{frame}{\subsectiontitle}
+\begin{itemize}
+    \item  A toolkit developed for the development of biomedical ontologies following the software development approach (a method preceded by the eNanoMapper/jenkins/Slimmer setup)
+    \item It is delivered in a docker image and uses ROBOT (a wrapper for the OWL API) and a series of scripts to standardize and automate steps like preparing ontology releases, continuous quality control checking, and dependency management. \cite{odk_matentzoglu}
+\end{itemize}
 
+    \includefiguremedium{odk-logo_black-banner.png}{The ODK logo}
+\end{frame}
 
-
+\begin{frame}{\subsectiontitle}
+The challenge: replicating the same class hierarchies after substituting Slimmer with ROBOT.
+\end{frame}
 
 % 
 \renewcommand{\subsectiontitle}{B. Ontology Development Kit}
@@ -406,19 +442,6 @@
 \end{tikzpicture} 
 \end{frame}
 
-% 
-\begin{frame}{\subsectiontitle}
-\begin{itemize}
-    \item  A toolkit developed for the development of biomedical ontologies following the software development approach (a method preceded by the eNanoMapper/jenkins/Slimmer setup)
-    \item It is delivered in a docker image and uses ROBOT (a wrapper for the OWL API) and a series of scripts to standardize and automate steps like preparing ontology releases, continuous quality control checking, and dependency management. \cite{odk_matentzoglu}
-\end{itemize}
-
-    \includefiguremedium{odk-logo_black-banner.png}{The ODK logo}
-\end{frame}
-
-\begin{frame}{\subsectiontitle}
-The challenge: replicating the same class hierarchies after substituting Slimmer with ROBOT.
-\end{frame}
 
 % 
 \renewcommand{\subsectiontitle}{Comparison}
